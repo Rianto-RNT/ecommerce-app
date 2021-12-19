@@ -33,17 +33,17 @@ https://drive.google.com/file/d/1wuQ5q506zjmDOf_7novOvr7rColROXjl/view?usp=shari
 
 ## Release Plan
 
-Release 1.0
+> Release 1.0
 
 - Show a list of products
 
-- Release 2.0
+> Release 2.0
 
 - Add products to shopping cart (CRUD)
 
 - Shopping cart check out
 
-- Release 3.0
+> Release 3.0
 
 - User login/logout security
 
