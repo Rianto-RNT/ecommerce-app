@@ -10,7 +10,7 @@ Build ecommerce web application and the data will be store in database using MyS
 
 - Build Real-time eCommerce App
 
-![alt text](
+![alt tag](
 https://drive.google.com/file/d/1wuQ5q506zjmDOf_7novOvr7rColROXjl/view?usp=sharing)
 
 ## Requirement
@@ -27,7 +27,7 @@ https://drive.google.com/file/d/1wuQ5q506zjmDOf_7novOvr7rColROXjl/view?usp=shari
 
 ## Wireframe
 
-![alt text](https://drive.google.com/file/d/1B2zzjb6WRzeg00tkM9PBdtm0R3Usdl1a/view?usp=sharing)
+![alt tag](https://drive.google.com/file/d/1B2zzjb6WRzeg00tkM9PBdtm0R3Usdl1a/view?usp=sharing)
 
 > willbe update soon for the wireframe
 
