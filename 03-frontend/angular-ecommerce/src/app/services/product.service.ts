@@ -18,3 +18,9 @@ export class ProductService {
       .pipe(map((response) => response._embedded.products));
   };
 }
+
+interface GetResponse {
+  _embedded: {
+    products: Product[];
+  }
+}
