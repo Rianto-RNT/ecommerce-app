@@ -1,23 +1,23 @@
 <table class="table">
 
   <thead class="thead-dark">
-    <tr>
-        <td></td>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Unit In Stock</th>
-    </tr>
+      <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Units in Stock</th>
+      </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let tempProduct of products">
-        <td class="align-middle">
-            <img src="{{tempProduct.imageUrl}}" height="50"/>
-        </td>
-      <td class="align-middle">{{ tempProduct.name }}</td>
-      <td class="align-middle">{{ tempProduct.unitPrice | currency: "IDR ":"symbol":"3.0" }}</td>
-      <td class="align-middle">{{ tempProduct.unitsInStock }}</td>
-    </tr>
-  </tbody>
+      <tr *ngFor="let tempProduct of products">
+          <td class="align-middle">
+              <img src="{{ tempProduct.imageUrl }}" height="50" />
+          </td>
+          <td class="align-middle">{{ tempProduct.name}}</td>
+          <td class="align-middle">{{ tempProduct.unitPrice | currency:'USD'}}</td>
+          <td class="align-middle">{{ tempProduct.unitsInStock}}</td>
+      </tr>
 
+  </tbody>
 </table>
