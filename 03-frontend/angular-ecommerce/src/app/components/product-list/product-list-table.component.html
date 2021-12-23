@@ -15,7 +15,7 @@
               <img src="{{ tempProduct.imageUrl }}" height="50" />
           </td>
           <td class="align-middle">{{ tempProduct.name}}</td>
-          <td class="align-middle">{{ tempProduct.unitPrice | currency:'USD'}}</td>
+          <td class="align-middle">{{ tempProduct.unitPrice | currency:'IDR ':'symbol':'3.0'}}</td>
           <td class="align-middle">{{ tempProduct.unitsInStock}}</td>
       </tr>
 

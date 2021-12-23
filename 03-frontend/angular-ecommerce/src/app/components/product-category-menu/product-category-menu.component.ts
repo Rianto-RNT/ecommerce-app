@@ -13,14 +13,15 @@ export class ProductCategoryMenuComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-    this.listProductCategories()
+  ngOnInit() {
+    this.listProductCategories();
   }
 
   listProductCategories() {
+
     this.productService.getProductCategories().subscribe(
       data => {
-        console.log('Product Categories= ' + JSON.stringify(data));
+        console.log('Product Categories=' + JSON.stringify(data));
         this.productCategories = data;
       }
     );
