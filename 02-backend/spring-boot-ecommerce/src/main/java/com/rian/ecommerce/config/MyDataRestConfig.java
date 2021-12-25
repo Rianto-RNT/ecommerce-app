@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-public class MyDataRestConfig implements RepositoryRestConfigurer {
+public class MyDataRestConfig implements RepositoryRestConfigurer, MyDataRestConfigs {
 
     private EntityManager entityManager;
 
@@ -24,7 +24,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         entityManager = theEntityManager;
     }
 
-    // @Override <- @TODO fix this error in override
+//     @Override // @TODO fix this error in override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
