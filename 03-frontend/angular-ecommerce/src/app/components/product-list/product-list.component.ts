@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/common/product';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list-grid.component.html',
@@ -91,7 +92,7 @@ export class ProductListComponent implements OnInit {
   }
 
   processResult() {
-    return data => {
+    return (data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) => {
       this.products = data._embedded.products;
       this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
