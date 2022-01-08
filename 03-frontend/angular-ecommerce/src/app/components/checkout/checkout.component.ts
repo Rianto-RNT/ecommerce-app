@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Country } from 'src/app/common/country';
 import { ShopRntFormService } from 'src/app/services/shop-rnt-form.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class CheckoutComponent implements OnInit {
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
+
+  countries: Country[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private shopRntFormService: ShopRntFormService) { }
@@ -68,6 +71,14 @@ export class CheckoutComponent implements OnInit {
       data => {
         console.log(" Retrived creditcard years: " + JSON.stringify(data));
         this.creditCardYears = data;
+      }
+    );
+
+    // populate the countries
+    this.shopRntFormService.getCountries().subscribe(
+      data => {
+        console.log("Retrieved countries: " + JSON.stringify(data));
+        this.countries = data;
       }
     );
   }
