@@ -134,15 +134,24 @@ export class CheckoutComponent implements OnInit {
     const formGroup = this.checkoutFormGroup.get(formGroupName);
 
     const countryCode = formGroup.value.country.code;
-    const countryName = formGroup.value.contry.name;
+    const countryName = formGroup.value.country.name;
 
-    console.log(`{formGroupName} country code: ${countryCode}`);
-    console.log(`{formGroupName} country name: ${countryName}`);
+    console.log(`${formGroupName} country code: ${countryCode}`);
+    console.log(`${formGroupName} country name: ${countryName}`);
 
     this.shopRntFormService.getStates(countryCode).subscribe(
       data => {
-      }
-    )
 
+        if (formGroupName === 'shippingAddress') {
+          this.shippingAddressStates = data;
+        }
+        else {
+          this.billingAddressStates = data;
+        }
+
+        // select first item by default
+        formGroup.get('state').setValue(data[0]);
+      }
+    );
   }
 }
