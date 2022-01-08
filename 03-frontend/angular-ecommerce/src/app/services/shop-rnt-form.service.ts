@@ -21,7 +21,7 @@ export class ShopRntFormService {
     );
   }
 
-  getState(theCountryCode: string): Observable<State[]> {
+  getStates(theCountryCode: string): Observable<State[]> {
 
     // search url
     const searchStateUrl = `${this.statesUrl}/search/findByCountryCode?code=${theCountryCode}`;
