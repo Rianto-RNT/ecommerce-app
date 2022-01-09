@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
 
         lastName: new FormControl('',
                                   [Validators.required,
-                                   Validators.minLength(1),
+                                   Validators.minLength(2),
                                    ShopRntValidators.notOnlyWhitespace]),
 
         email: new FormControl('',
@@ -49,33 +49,33 @@ export class CheckoutComponent implements OnInit {
       shippingAddress: this.formBuilder.group({
         street:new FormControl('',
                                 [Validators.required,
-                                Validators.minLength(1),
+                                Validators.minLength(2),
                                 ShopRntValidators.notOnlyWhitespace]),
         city:new FormControl('',
                               [Validators.required,
-                               Validators.minLength(1),
+                               Validators.minLength(2),
                                ShopRntValidators.notOnlyWhitespace]),
         state: new FormControl('',[Validators.required]),
         country: new FormControl('',[Validators.required]),
         zipCode: new FormControl('',
                                   [Validators.required,
-                                   Validators.minLength(1),
+                                   Validators.minLength(5),
                                    ShopRntValidators.notOnlyWhitespace])
       }),
       billingAddress: this.formBuilder.group({
         street:new FormControl('',
                                 [Validators.required,
-                                 Validators.minLength(1),
+                                 Validators.minLength(2),
                                  ShopRntValidators.notOnlyWhitespace]),
         city:new FormControl('',
                               [Validators.required,
-                               Validators.minLength(1),
+                               Validators.minLength(2),
                                ShopRntValidators.notOnlyWhitespace]),
         state: new FormControl('',[Validators.required]),
         country: new FormControl('',[Validators.required]),
         zipCode: new FormControl('',
                                   [Validators.required,
-                                   Validators.minLength(1),
+                                   Validators.minLength(5),
                                    ShopRntValidators.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
