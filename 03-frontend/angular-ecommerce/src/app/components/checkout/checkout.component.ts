@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, MinLengthValidator } f
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { ShopRntFormService } from 'src/app/services/shop-rnt-form.service';
+import { ShopRntValidators } from 'src/app/validators/shop-rnt-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -31,7 +32,11 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('',
+                                  [Validators.required,
+                                   Validators.minLength(2),
+                                   ShopRntValidators.notOnlyWhitespace]),
+
         lastName: new FormControl('', [Validators.required, Validators.minLength(1)]),
         email: new FormControl('',
                               [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])
