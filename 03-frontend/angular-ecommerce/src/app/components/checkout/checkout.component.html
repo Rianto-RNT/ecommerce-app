@@ -20,9 +20,7 @@
                     First Name is required.
                   </div>
 
-                  <div *ngIf="firstName.errors?.['minLength']">
-                    First Name must be at least 2 character long.
-                  </div>
+                  <div *ngIf="firstName.errors?.['minLength']">First Name must be at least 2 character long.</div>
                 </div>
               </div>
             </div>
@@ -38,9 +36,7 @@
                     Last Name is required.
                   </div>
 
-                  <div *ngIf="lastName.errors?.['minLength']">
-                    Last Name must be at least 1 character long.
-                  </div>
+                  <div *ngIf="lastName.errors?.['minLength']">Last Name must be at least 1 character long.</div>
                 </div>
               </div>
             </div>
@@ -74,6 +70,11 @@
                     {{ country.name }}
                   </option>
                 </select>
+                <div *ngIf="shippingAddressCountry.invalid && (shippingAddressCountry.dirty || shippingAddressCountry.touched)" class="alert alert-danger mt-1">
+                  <div *ngIf="shippingAddressCountry.errors?.['required']">
+                    Country is required.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
