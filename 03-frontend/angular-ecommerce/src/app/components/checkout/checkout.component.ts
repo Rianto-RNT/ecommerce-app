@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { ShopRntFormService } from 'src/app/services/shop-rnt-form.service';
 import { ShopRntValidators } from 'src/app/validators/shop-rnt-validators';
 
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
   billingAddressStates: State[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private shopRntFormService: ShopRntFormService) { }
+              private shopRntFormService: ShopRntFormService,
+              private cartService: CartService ) { }
 
   ngOnInit(): void {
 
