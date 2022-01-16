@@ -15,7 +15,6 @@ import javax.persistence.metamodel.EntityType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
