@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, MinLengthValidator } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country';
+import { Order } from 'src/app/common/order';
+import { OrderItem } from 'src/app/common/order-item';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { ShopRntFormService } from 'src/app/services/shop-rnt-form.service';
 import { ShopRntValidators } from 'src/app/validators/shop-rnt-validators';
 
@@ -28,7 +32,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private shopRntFormService: ShopRntFormService,
-              private cartService: CartService ) { }
+              private cartService: CartService,
+              private checkoutService:  CheckoutService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -182,13 +188,43 @@ export class CheckoutComponent implements OnInit {
 
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      return;
     }
 
+    /*
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("The email address is " + this.checkoutFormGroup.get('customer').value.email);
-
     console.log("The shipping address country is " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
     console.log("The shipping address state is " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+    */
+
+    // set up order
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity;
+
+    // get cart items
+    const cartItems = this.cartService.cartItems
+
+    // create orderItems from CartItems
+    // - long way
+    /* let orderItems: OrderItem[] = [];
+    for (let i=0; i < cartItems.length; i++) {
+      orderItems[i] = new OrderItem(cartItems[i]);
+    } */
+
+    // -sort way
+    let orderItems:OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
+
+    // set up purchase
+
+    // populate purchase - customer
+
+    // populate purchase - billig address
+
+    // populate purchase - order and orderItems
+
+    // call REST API via the CheckoutSrvice
   }
 
   handleMonthsAndYears() {
