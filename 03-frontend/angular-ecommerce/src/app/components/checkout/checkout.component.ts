@@ -192,6 +192,11 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
+        // set up order
+        let order = new Order();
+        order.totalPrice = this.totalPrice;
+        order.totalQuantity = this.totalQuantity;
+
     /*
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("The email address is " + this.checkoutFormGroup.get('customer').value.email);
@@ -199,23 +204,20 @@ export class CheckoutComponent implements OnInit {
     console.log("The shipping address state is " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
     */
 
-    // set up order
-    let order = new Order();
-    order.totalPrice = this.totalPrice;
-    order.totalQuantity = this.totalQuantity;
-
     // get cart items
-    const cartItems = this.cartService.cartItems
+    const cartItems = this.cartService.cartItems;
 
-    // create orderItems from CartItems
+    // create orderItems from cartItems
     // - long way
-    /* let orderItems: OrderItem[] = [];
+    /*
+    let orderItems: OrderItem[] = [];
     for (let i=0; i < cartItems.length; i++) {
       orderItems[i] = new OrderItem(cartItems[i]);
-    } */
+    }
+    */
 
-    // -sort way
-    let orderItems:OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
+    // - short way of doing the same thingy
+    let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
 
     // set up purchase
     let purchase = new Purchase();
@@ -241,32 +243,34 @@ export class CheckoutComponent implements OnInit {
     purchase.order = order;
     purchase.orderItems = orderItems;
 
-    // call REST API via the CheckoutSrvice
+    // call REST API via the CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
         next: response => {
-          alert(`Your order has benn recieved.\nOrder tracking number: ${response.orderTrackingNumber}`)
+          alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
 
           // reset cart
           this.resetCart();
 
         },
         error: err => {
-          alert(`There was an error: ${err.message}`)
+          alert(`There was an error: ${err.message}`);
         }
-      });
+      }
+    );
+
   }
 
   resetCart() {
-   // reset cart data
-   this.cartService.cartItems = [];
-   this.cartService.totalPrice.next(0);
-   this.cartService.totalQuantity.next(0)
+    // reset cart data
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
 
-   // reset the form data
-   this.checkoutFormGroup.reset();
+    // reset the form
+    this.checkoutFormGroup.reset();
 
-   // navigate back to the product page
-   this.router.navigateByUrl("/products");
+    // navigate back to the products page
+    this.router.navigateByUrl("/products");
   }
 
   handleMonthsAndYears() {

@@ -40,7 +40,7 @@ public class Order {
 
     @Column(name="last_updated")
     @UpdateTimestamp
-    private Date lastCreated;
+    private Date lastUpdated;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private Set<OrderItem> orderItems = new HashSet<>();
@@ -58,10 +58,12 @@ public class Order {
     private Address billingAddress;
 
     public void add(OrderItem item) {
+
         if (item != null) {
             if (orderItems == null) {
                 orderItems = new HashSet<>();
             }
+
             orderItems.add(item);
             item.setOrder(this);
         }

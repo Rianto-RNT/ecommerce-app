@@ -7,13 +7,13 @@ import com.rian.ecommerce.entity.Customer;
 import com.rian.ecommerce.entity.Order;
 import com.rian.ecommerce.entity.OrderItem;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 import java.util.UUID;
 
 @Service
- public class CheckoutServiceImpl implements CheckoutService {
+public class CheckoutServiceImpl implements CheckoutService {
 
     private CustomerRepository customerRepository;
 
@@ -32,7 +32,7 @@ import java.util.UUID;
         String orderTrackingNumber = generateOrderTrackingNumber();
         order.setOrderTrackingNumber(orderTrackingNumber);
 
-        // populate order with orderItem
+        // populate order with orderItems
         Set<OrderItem> orderItems = purchase.getOrderItems();
         orderItems.forEach(item -> order.add(item));
 
@@ -44,7 +44,7 @@ import java.util.UUID;
         Customer customer = purchase.getCustomer();
         customer.add(order);
 
-        // save to database
+        // save to the database
         customerRepository.save(customer);
 
         // return a response
@@ -53,9 +53,18 @@ import java.util.UUID;
 
     private String generateOrderTrackingNumber() {
 
-        // generate a random UUID number (UUID v4)
-        // For detail see: wikipedia keyword: Universally unique identifier
+        // generate a random UUID number (UUID version-4)
+        // For details see: https://en.wikipedia.org/wiki/Universally_unique_identifier
         //
         return UUID.randomUUID().toString();
     }
 }
+
+
+
+
+
+
+
+
+
