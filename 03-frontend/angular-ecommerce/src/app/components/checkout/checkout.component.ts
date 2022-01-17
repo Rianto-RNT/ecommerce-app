@@ -238,8 +238,35 @@ export class CheckoutComponent implements OnInit {
     purchase.billingAddress.country = billingCountry.name;
 
     // populate purchase - order and orderItems
+    purchase.order = order;
+    purchase.orderItems = orderItems;
 
     // call REST API via the CheckoutSrvice
+    this.checkoutService.placeOrder(purchase).subscribe({
+        next: response => {
+          alert(`Your order has benn recieved.\nOrder tracking number: ${response.orderTrackingNumber}`)
+
+          // reset cart
+          this.resetCart();
+
+        },
+        error: err => {
+          alert(`There was an error: ${err.message}`)
+        }
+      });
+  }
+
+  resetCart() {
+   // reset cart data
+   this.cartService.cartItems = [];
+   this.cartService.totalPrice.next(0);
+   this.cartService.totalQuantity.next(0)
+
+   // reset the form data
+   this.checkoutFormGroup.reset();
+
+   // navigate back to the product page
+   this.router.navigateByUrl("/products");
   }
 
   handleMonthsAndYears() {
