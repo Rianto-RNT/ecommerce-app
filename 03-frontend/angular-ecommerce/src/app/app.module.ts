@@ -27,7 +27,7 @@ import {
 
 import myAppConfig from './config/my-app-config';
 
-const oktaConfog = Object.assign({
+const oktaConfig = Object.assign({
   onAuthRequired: (injector) => {
     const router = injector.get(Router);
 
@@ -37,6 +37,9 @@ const oktaConfog = Object.assign({
 }, myAppConfig.oidc);
 
 const routes: Routes = [
+  {path: 'login/callback', component: OktaCallbackComponent},
+  {path: 'login', component: LoginComponent},
+
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -66,9 +69,10 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OktaAuthModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, {provide: OKTA_CONFIG, useValue: oktaConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
